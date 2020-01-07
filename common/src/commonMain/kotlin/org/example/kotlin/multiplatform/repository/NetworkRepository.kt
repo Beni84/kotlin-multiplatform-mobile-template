@@ -1,15 +1,14 @@
 package org.example.kotlin.multiplatform.repository
 
 import org.example.kotlin.multiplatform.data.NetworkDataSource
-import org.example.kotlin.multiplatform.repository.model.Greeting
-import org.example.kotlin.multiplatform.repository.model.toModel
+import org.example.kotlin.multiplatform.data.model.toModel
+import org.example.kotlin.multiplatform.entities.Contact
 
 class NetworkRepository(
     private val dataSource: NetworkDataSource
 ) {
 
-    suspend fun getGreeting(who: String): Greeting =
-        dataSource.getGreeting(who)
-            .greeting
-            .toModel()
+    suspend fun retrieveUsers(numContacts: Int): List<Contact> {
+        return dataSource.retrieveUsers(numContacts).results.toModel()
+    }
 }

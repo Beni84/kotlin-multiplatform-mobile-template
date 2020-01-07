@@ -76,7 +76,7 @@ private fun logError(label: String, message: String, throwable: Throwable) {
     throwable.printStackTrace()
 }
 
-internal actual fun CustomMainScope(): CoroutineScope = CustomMainScopeImpl()
+internal actual fun getCustomMainScope(): CoroutineScope = CustomMainScopeImpl()
 
 internal class CustomMainScopeImpl : CoroutineScope {
     private val dispatcher = MainDispatcher()

@@ -1,15 +1,11 @@
 package org.example.kotlin.multiplatform.api
 
 object Api {
-    const val path = "/api"
+    private const val path = "/api"
 
-    object V1 {
-        const val path = "/v1"
-
-        object Paths {
-            const val greeting = "/greeting"
-        }
+    object Paths {
+        const val randomUsers = "?results="
     }
 
-    fun path(path: String) = "${Api.path}${V1.path}$path"
+    fun retrieveRandomUsers(numUsers: Int) = "${Api.path}${Paths.randomUsers}$numUsers"
 }

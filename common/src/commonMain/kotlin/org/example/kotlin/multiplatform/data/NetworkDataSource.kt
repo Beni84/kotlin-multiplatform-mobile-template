@@ -11,7 +11,6 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import io.ktor.client.utils.EmptyContent
 import io.ktor.http.URLProtocol
-import io.ktor.http.encodeURLPath
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder
 import kotlinx.serialization.KSerializer
@@ -20,22 +19,14 @@ import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.internal.UnitDescriptor
 import kotlinx.serialization.json.Json.Companion.nonstrict
 import org.example.kotlin.multiplatform.api.Api
-import org.example.kotlin.multiplatform.api.Api.V1.Paths.greeting
-import org.example.kotlin.multiplatform.data.responses.HelloResponse
+import org.example.kotlin.multiplatform.data.model.ApiResult
 
 class NetworkDataSource(networkConfig: NetworkConfig = defaultNetworkConfig) {
 
-    private val httpClient: HttpClient =
-        makeHttpClient(networkConfig)
+    private val httpClient: HttpClient = makeHttpClient(networkConfig)
 
-    suspend fun getGreeting(who: String): HelloResponse =
-        httpClient.get<HelloResponse>(
-            path = Api.path(greeting)
-        ) {
-            url {
-                encodedPath += "/${who.encodeURLPath()}"
-            }
-        }
+    suspend fun retrieveUsers(numContacts: Int): ApiResult =
+        httpClient.get(path = Api.retrieveRandomUsers(numContacts))
 }
 
 @UseExperimental(UnstableDefault::class)
@@ -45,19 +36,18 @@ private fun makeHttpClient(
     defaultRequest {
         url {
             host = networkConfig.host
-            port = networkConfig.port
             protocol = if (networkConfig.secure) URLProtocol.HTTPS else URLProtocol.HTTP
         }
     }
     Json {
         serializer = KotlinxSerializer(json = nonstrict).apply {
-            register(HelloResponse.serializer())
+            register(ApiResult.serializer())
             register(EmptyContentSerializer)
         }
     }
     Logging {
         logger = Logger.DEFAULT
-        level = LogLevel.INFO
+        level = LogLevel.ALL
     }
 }
 

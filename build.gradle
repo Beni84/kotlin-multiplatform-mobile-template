@@ -11,7 +11,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$Versions.kotlin"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$Versions.kotlin"
-        classpath "com.android.tools.build:gradle:$Versions.androidGradlePlugin"
+        classpath "com.android.tools.build:gradle:3.5.3"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$Versions.detekt"
         classpath 'co.touchlab:kotlinxcodesync:0.1.2'
     }
@@ -35,6 +35,7 @@ subprojects {
         google()
         maven { url "https://kotlin.bintray.com/kotlinx" }
         maven { url "http://dl.bintray.com/kotlin/ktor" }
+        maven { url "https://jitpack.io" }
     }
 
     apply plugin: "io.gitlab.arturbosch.detekt"

@@ -69,6 +69,10 @@ dependencies {
     implementation Libs.material
     implementation Libs.constraintlayout
 
+    implementation Libs.baseRecyclerAdapter
+    implementation Libs.glide
+    annotationProcessor Libs.glideCompiler
+
     implementation Libs.kotlinStdlib
 
     implementation Libs.kotlinxCoroutinesAndroid

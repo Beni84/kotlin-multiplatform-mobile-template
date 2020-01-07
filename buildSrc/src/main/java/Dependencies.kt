@@ -9,6 +9,9 @@ object Versions {
     const val mockitoKotlin = "2.1.0"
     const val serialization = "0.11.1"
     const val okhttp = "4.0.1"
+
+    const val baseRecyclerAdapter = "1eab5a7e16"
+    const val glide = "4.10.0"
 }
 
 object Libs {
@@ -17,6 +20,11 @@ object Libs {
     const val recyclerview = "androidx.recyclerview:recyclerview:1.0.0"
     const val material = "com.google.android.material:material:1.0.0"
     const val constraintlayout = "com.android.support.constraint:constraint-layout:1.1.3"
+
+    //Android
+    const val baseRecyclerAdapter = "com.github.Gigigo-Android-Devs:gigigo-baseRecyclerAdapter-library-android:${Versions.baseRecyclerAdapter}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
     const val junit = "junit:junit:${Versions.junit}"
 

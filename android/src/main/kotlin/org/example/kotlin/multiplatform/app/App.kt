@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import org.example.kotlin.multiplatform.di.NotDagger
 
-class ExampleApplication : Application() {
+class App : Application() {
 
     val notDagger = NotDagger()
 
@@ -18,5 +18,5 @@ class ExampleApplication : Application() {
     }
 }
 
-val Context.exampleApplication
-    get() = this.applicationContext as ExampleApplication
+val Context.app
+    get() = this.applicationContext as App
